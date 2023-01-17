@@ -22,6 +22,33 @@ class Film : public Video {
                 chapters[i]=_chapters[i];
             } 
         }
+        Film(const Film & from) : Video(from) {
+            nb_chapters = from.nb_chapters;
+            if (from.chapters) {
+                chapters = new int[nb_chapters];
+                for (int i=0; i<nb_chapters; i++){
+                    chapters[i]=from.chapters[i];
+                }
+            }
+            else {
+                chapters=nullptr;
+            }
+        }
+        Film& operator=(const Film& from){
+            Video::operator=(from);
+            nb_chapters = from.nb_chapters;
+            delete chapters;
+            if (from.chapters) {
+                chapters = new int[nb_chapters];
+                for (int i=0; i<nb_chapters; i++){
+                    chapters[i]=from.chapters[i];
+                }
+            }
+            else {
+                chapters=nullptr;
+            }
+            return *this;
+        }
         ~Film() override {delete[] chapters;}
         void setChapters(int * _chapters, int _nb_chapters){
             nb_chapters = _nb_chapters;
@@ -31,7 +58,7 @@ class Film : public Video {
                 chapters[i]=_chapters[i];
             }
         }
-        const int * getChapters() const{
+        int * getChapters() const{
             return chapters;
         }
         int getNbChapters() const {

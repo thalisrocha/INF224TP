@@ -1,7 +1,7 @@
 # INF224TP
 
 * Question 1 :
-    * **Q:** Comment appelle-t'on ce type de méthode et comment faut-il les déclarer ?\ 
+    * **Q:** Comment appelle-t'on ce type de méthode et comment faut-il les déclarer ?\
     **R:** On appelle cela des methodes virtuelles. On les déclare ainsi dans la classe de base : 
     ```C++
     virtual type method(params) = 0;
@@ -10,7 +10,7 @@
     **R:** Car la classe de base possède une méthode abstraite.
 
 * Question 2 : 
-    * **Q:** Quelle est la propriété caractéristique de l'orienté objet qui permet de faire cela ?\ 
+    * **Q:** Quelle est la propriété caractéristique de l'orienté objet qui permet de faire cela ?\
     **R:** C'est le **polymorphisme**
     * **Q:** Qu'est-il spécifiquement nécessaire de faire dans le cas du C++ ?\
     **R:** Il est nécessaire de déclarer les méthodes **virtuelles** dans la classe de base pour assurer une liaison dynamique des méthodes (c'est à dire que les méthodes exécutées soient celles du type du pointé et non du pointeur)
@@ -19,8 +19,10 @@
 
 * Question 3 :
     * **Q:** Parmi les classes précédemment écrites quelles sont celles qu'il faut modifier afin qu'il n'y ait pas de fuite mémoire quand on détruit les objets ?\
-    **R:** La seule classe ayant pour attribut un pointeur alloué sur le tas est la classe ``Film`` (le tableau des chaptires). Il faut donc s'assurer que libérer ce tableau quand un élément de type ``Film``. On met donc ce bout de code dans le destructeur de la classe ``Film``, après s'être assuré que le desctructeur de ``MultimediaObject`` est bien virtual :  
+    **R:** La seule classe ayant pour attribut un pointeur alloué sur le tas est la classe ``Film`` (le tableau des chaptires). Il faut donc s'assurer de libérer ce tableau quand un élément de type ``Film``. On met donc ce bout de code dans le destructeur de la classe ``Film``, après s'être assuré que le desctructeur de ``MultimediaObject`` est bien virtual :  
     ```C++
     ~Film() override {delete[] chapters;}
     ```
+    * **Q:** La copie d'objet peut également poser problème quand ils ont des variables d'instance qui sont des pointeurs. Quel est le problème et quelles sont les solutions ?\
+    **R:** Le problème est que par défaut les copies sont superficielles, donc seuls les pointeurs seront copiés et ils pointeront donc vers le même objet, qui sera donc modifié par les deux copies et qui sera aussi détruit deux fois. La solution pour pallier ce problème est de définir des opérateurs de copie.
 

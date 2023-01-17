@@ -13,8 +13,13 @@ using namespace std;
 
 int main(int argc, const char* argv[])
 {
-
-    Film * vid = new Film();
+    int tab[2] = {1,2};
+    Film * vid = new Film(tab,2,"test","./videotest.mp4",10);
+    Film * vid2= new Film();
+    *vid2=*vid;
+    int * tab2 = vid->getChapters();
+    tab2[0]=4;
     vid->display(cout);
-    delete vid;
+    vid2->display(cout);
+    cout << tab[0];
 }
