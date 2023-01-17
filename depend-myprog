@@ -1,5 +1,2 @@
--Wall
--g
--MM
-main.cpp
-MultimediaObject.cpp
+main.o: main.cpp MultimediaObject.h Picture.h Video.h Film.h
+MultimediaObject.o: MultimediaObject.cpp MultimediaObject.h

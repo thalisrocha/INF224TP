@@ -9,7 +9,10 @@ private :
 
 public :
     Video(){}
-    Video(std::string _name, std::string _filepath, int _duration) :
+    Video(
+        std::string _name, 
+        std::string _filepath, 
+        int _duration) :
         MultimediaObject(_name,_filepath), duration{_duration} {}
     ~Video() override {}
     void setDuration(float _duration) {duration = _duration;}
