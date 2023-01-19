@@ -10,8 +10,12 @@ private :
 
 public :
     Picture(){}
-    Picture(std::string _name, std::string _filepath, float _length, float _width) :
-        MultimediaObject(_name,_filepath), length{_length}, width{_width} {}
+    Picture(
+        std::string _name,
+        std::string _filepath,
+        float _length, 
+        float _width
+        ) : MultimediaObject(_name,_filepath), length{_length}, width{_width} {}
     ~Picture() override {}
     void setWidth(float _width) {width = _width;}
     float getWidth() const {return width;}

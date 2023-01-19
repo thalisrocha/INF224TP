@@ -26,3 +26,6 @@
     * **Q:** La copie d'objet peut également poser problème quand ils ont des variables d'instance qui sont des pointeurs. Quel est le problème et quelles sont les solutions ?\
     **R:** Le problème est que par défaut les copies sont superficielles, donc seuls les pointeurs seront copiés et ils pointeront donc vers le même objet, qui sera donc modifié par les deux copies et qui sera aussi détruit deux fois. La solution pour pallier ce problème est de définir des opérateurs de copie.
 
+* Question 4 : 
+    * **Q:** Le groupe ne doit pas détruire les objets quand il est détruit car un objet peut appartenir à plusieurs groupes (on verra ce point à la question suivante). On rappelle aussi que la liste d'objets doit en fait être une liste de pointeurs d'objets. Pourquoi ? Comparer à Java.\
+    **R::** Il faut avoir des pointeurs pour pouvoir permettre un traitement uniforme via le polymorphisme. En Java, tout est référence (donc pointeur) donc un tableau contient forcément des références vers les objets (i.e des pointeurs)
