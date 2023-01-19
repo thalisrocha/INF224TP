@@ -11,11 +11,11 @@ class Film : public Video {
     public :
         Film(){}
         Film(
-            int * _chapters,
-            int _nb_chapters,
             std::string _name,
             std::string _filepath,
-            int _duration
+            int _duration,
+            int * _chapters,
+            int _nb_chapters,
         ) : Video(_name, _filepath, _duration), nb_chapters{_nb_chapters} {
             chapters = new int[_nb_chapters];
             for (int i=0; i< _nb_chapters;i++){
