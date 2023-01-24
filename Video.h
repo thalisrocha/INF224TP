@@ -6,14 +6,15 @@
 class Video : public MultimediaObject {
 private :
     int duration{};
-
-public :
+protected :
     Video(){}
     Video(
         std::string _name, 
         std::string _filepath, 
         int _duration) :
         MultimediaObject(_name,_filepath), duration{_duration} {}
+    friend class DataBase;
+public :
     ~Video() override {}
     void setDuration(float _duration) {duration = _duration;}
     float getDuration() const {return duration;}

@@ -34,7 +34,7 @@ class DataBase{
         MultimediaPtr createVideo(
             std::string _name,
             std::string _filepath,
-            int _duration,
+            int _duration
         ){
             MultimediaPtr vid (new Video(_name,_filepath,_duration));
             objectsTable[_name] = vid;
@@ -51,28 +51,50 @@ class DataBase{
             objectsTable[_name] = film;
             return film;
         }
-        GroupPtr createGroup(std::sting _name){
+        GroupPtr createGroup(std::string _name){
             GroupPtr grp (new Group(_name));
             groupsTable[_name] = grp;
             return grp;
         }
         void displayObject(std::string name, std::ostream & os) const{
-            if (auto search = objectsTable.find(name); search != objectsTable.end())
+            auto search = objectsTable.find(name);
+            if (search != objectsTable.end())
                 search->second->display(os);
             else
-                std::cout << "Not found\n";
+                std::cout << name << "not found\n";
         }
         void displayGroup(std::string name, std::ostream &os) const {
-            if (auto search = groupsTable.find(name); search != groupsTable.end())
+            auto search = groupsTable.find(name);
+            if (search != groupsTable.end())
                 search->second->display(os);
             else
-                std::cout << "Not found\n";
+                std::cout << name << "not found\n";
         }
         void playObject(std::string name) const {
-            if (auto search = objectsTable.find(name); search != objectsTable.end())
+            auto search = objectsTable.find(name);
+            if (search != objectsTable.end())
                 search->second->play();
             else
-                std::cout << "Not found\n";
+                std::cout << name << "not found\n";
+        }
+
+        void removeObject(std::string name) {
+            int found = objectsTable.erase(name);
+            if (found) {
+                for (auto const &group : groupsTable){
+                        group.second->remove_if([=] (MultimediaPtr obj) {return obj->getName() == name;});
+                }
+            }
+            else {
+                std::cout << name << "not found\n";
+            }
+        }
+        
+        void removeGroup(std::string name){
+            int found = groupsTable.erase(name);
+            if (!found){
+                std::cout << name << "not found\n";
+            }
         }
 };
 

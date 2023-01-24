@@ -7,21 +7,22 @@ class Film : public Video {
     private :
         int * chapters {};
         int nb_chapters {};
-
-    public :
+    protected :
         Film(){}
         Film(
             std::string _name,
             std::string _filepath,
             int _duration,
             int * _chapters,
-            int _nb_chapters,
+            int _nb_chapters
         ) : Video(_name, _filepath, _duration), nb_chapters{_nb_chapters} {
             chapters = new int[_nb_chapters];
             for (int i=0; i< _nb_chapters;i++){
                 chapters[i]=_chapters[i];
             } 
         }
+        friend class DataBase;
+    public :
         Film(const Film & from) : Video(from) {
             nb_chapters = from.nb_chapters;
             if (from.chapters) {

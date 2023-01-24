@@ -28,4 +28,8 @@
 
 * Question 4 : 
     * **Q:** Le groupe ne doit pas détruire les objets quand il est détruit car un objet peut appartenir à plusieurs groupes (on verra ce point à la question suivante). On rappelle aussi que la liste d'objets doit en fait être une liste de pointeurs d'objets. Pourquoi ? Comparer à Java.\
-    **R::** Il faut avoir des pointeurs pour pouvoir permettre un traitement uniforme via le polymorphisme. En Java, tout est référence (donc pointeur) donc un tableau contient forcément des références vers les objets (i.e des pointeurs)
+    **R:** Il faut avoir des pointeurs pour pouvoir permettre un traitement uniforme via le polymorphisme. En Java, tout est référence (donc pointeur) donc un tableau contient forcément des références vers les objets (i.e des pointeurs)
+
+* Question 5 : 
+    * **Q:** Les méthodes précédentes permettent d'assurer la cohérence de la base de données car quand on crée un objet on l'ajoute à la table adéquate. Par contre, ce ne sera pas le cas si on crée un objet directement avec new (il n'appartiendra à aucune table). Comment peut-on l'interdire, afin que seule la classe servant à manipuler les objets puisse en créer de nouveaux ?\
+    **R:** Il faut déclarer les constructeurs de `Picture`, `Film`, `Video` et `Group` en tant que `protected` (pour permettre l'héritage) et déclarer la classe `DataBase` en tant que `friend` de ces dernières.

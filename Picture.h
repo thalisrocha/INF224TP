@@ -3,12 +3,13 @@
 
 #include "MultimediaObject.h"
 
+class DataBase;
+
 class Picture : public MultimediaObject {
 private :
     float length{};
     float width{};
-
-public :
+protected :
     Picture(){}
     Picture(
         std::string _name,
@@ -16,6 +17,8 @@ public :
         float _length, 
         float _width
         ) : MultimediaObject(_name,_filepath), length{_length}, width{_width} {}
+    friend class DataBase;
+public :
     ~Picture() override {}
     void setWidth(float _width) {width = _width;}
     float getWidth() const {return width;}

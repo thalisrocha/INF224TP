@@ -12,7 +12,7 @@ private :
 public :
     MultimediaObject() {}
     MultimediaObject(std::string name, std::string filepath);
-    virtual ~MultimediaObject() {}
+    virtual ~MultimediaObject() {std::cout << "destroyed " << name << std::endl;}
     std::string getName() const {return name;}
     std::string getFilePath() const {return filepath;}
     void setName(std::string _name) {name = _name;}
