@@ -61,21 +61,23 @@ class DataBase{
             if (search != objectsTable.end())
                 search->second->display(os);
             else
-                std::cout << name << "not found\n";
+                os << "Error : "<< name << " not found";
         }
         void displayGroup(std::string name, std::ostream &os) const {
             auto search = groupsTable.find(name);
             if (search != groupsTable.end())
                 search->second->display(os);
             else
-                std::cout << name << "not found\n";
+                os << "Error : "<< name << " not found";
         }
-        void playObject(std::string name) const {
+        bool playObject(std::string name) const {
             auto search = objectsTable.find(name);
-            if (search != objectsTable.end())
+            if (search != objectsTable.end()){
                 search->second->play();
+                return true;
+            }
             else
-                std::cout << name << "not found\n";
+                return false;
         }
 
         void removeObject(std::string name) {
